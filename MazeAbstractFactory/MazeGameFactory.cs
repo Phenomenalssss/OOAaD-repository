@@ -12,7 +12,7 @@ namespace MazeAbstractFactory
 {
     public class MazeGameFactory
     {
-        public Maze CreateMaze(MazeFactory factory)
+        public Maze CreateMaze(IMazeFactory factory)
         {
             Maze Maze = factory.MakeMaze();
             Room r1 = factory.MakeRoom(1);
@@ -24,6 +24,8 @@ namespace MazeAbstractFactory
 
             Maze.AddRoom(r1);
             Maze.AddRoom(r2);
+
+            Maze.RoomNumber(2);
 
             Wall wall = factory.MakeWall();
             wall.Enter();

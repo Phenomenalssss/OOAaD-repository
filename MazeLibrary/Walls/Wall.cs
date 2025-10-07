@@ -10,7 +10,7 @@ namespace MazeLibrary.Walls
     {
         public Wall() { }
 
-        public virtual void Enter() 
+        public override void Enter() 
         {
             Console.WriteLine("Вы упёрлись в стену");
         }

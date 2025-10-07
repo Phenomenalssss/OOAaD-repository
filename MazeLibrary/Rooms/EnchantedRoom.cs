@@ -8,13 +8,23 @@ namespace MazeLibrary.Rooms
 {
     public class EnchantedRoom : Room
     {
-        int roomNumber;
-        Spell _spell;
-        private MapSite[] sides = new MapSite[4];
-        public EnchantedRoom(int n, Spell spell) : base(n)
+        public int roomNumber;
+        private Spell _spell;
+        private MapSite[] _sides = new MapSite[4];
+
+        public EnchantedRoom(int n) : base(n)
         {
+            if (n <= 0)
+            {
+                throw new ArgumentException("Номер комнаты должен быть натуральным числом");
+            }
             roomNumber = n;
-            _spell = spell;  
+            _spell = new Spell();  
+        }
+
+        public void CastSpell()
+        {
+            Console.WriteLine("Вы использовали заклинание");
         }
 
         public override void Enter()
@@ -23,12 +33,12 @@ namespace MazeLibrary.Rooms
         }
         public MapSite GetSide(Direction dir)
         {
-            return sides[(int)dir];
+            return _sides[(int)dir];
         }
 
         public void SetSide(Direction dir, MapSite mapsite)
         {
-            sides[(int)dir] = mapsite;
+            _sides[(int)dir] = mapsite;
         }
     }
 }

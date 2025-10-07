@@ -8,10 +8,15 @@ namespace MazeLibrary.Rooms
 {
     public class RoomWithABomb : Room
     {
-        int roomNumber;
-        private MapSite[] sides = new MapSite[4];
+        public int roomNumber;
+        private MapSite[] _sides = new MapSite[4];
+
         public RoomWithABomb(int n) : base(n)
         {
+            if (n <= 0)
+            {
+                throw new ArgumentException("Номер комнаты должен быть натуральным числом");
+            }
             roomNumber = n;
         }
 
@@ -21,12 +26,12 @@ namespace MazeLibrary.Rooms
         }
         public MapSite GetSide(Direction dir)
         {
-            return sides[(int)dir];
+            return _sides[(int)dir];
         }
-
+        
         public void SetSide(Direction dir, MapSite mapsite)
         {
-            sides[(int)dir] = mapsite;
+            _sides[(int)dir] = mapsite;
         }
     }
 }

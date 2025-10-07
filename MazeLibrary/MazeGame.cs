@@ -9,7 +9,7 @@ using MazeLibrary.Walls;
 
 namespace MazeLibrary
 {
-    public class MazeGame : Maze
+    public class MazeGame
     {
         public Maze CreateMaze()
         {

@@ -10,34 +10,28 @@ using MazeLibrary.Walls;
 
 namespace MazeAbstractFactory
 {
-    public class MazeFactory
+    public class JustMazeFactory : IMazeFactory
     {
-        public MazeFactory() { }
 
-        public virtual Maze MakeMaze()
+        public Maze MakeMaze()
         {
             Console.WriteLine("----- Вы создали обычный лабиринт -----");
             return new Maze();
         }
 
-        public virtual Wall MakeWall()
+        public Wall MakeWall()
         {
             return new Wall();
         }
 
-        public virtual Room MakeRoom(int n)
+        public Room MakeRoom(int n)
         {
             return new Room(n);
         }
 
-        public virtual Door MakeDoor(Room r1, Room r2)
+        public Door MakeDoor(Room r1, Room r2)
         {
             return new Door(r1, r2);
-        }
-
-        public virtual void CastSpell()
-        {
-            Console.WriteLine("Вы использовали заклинанние");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MazeLibrary;
+using MazeLibrary.Doors;
 using MazeLibrary.Rooms;
 using MazeLibrary.Walls;
 using System;
@@ -9,24 +10,29 @@ using System.Threading.Tasks;
 
 namespace MazeAbstractFactory
 {
-    public class BombedMazeFactory : MazeFactory
+    public class BombedMazeFactory : IMazeFactory
     {
         public BombedMazeFactory() { }
 
-        public override Maze MakeMaze()
+        public Maze MakeMaze()
         {
             Console.WriteLine("----- Вы создали лабиринт с бомбой -----");
             return new Maze();
         }
 
-        public override BombedWall MakeWall()
+        public Wall MakeWall()
         {
             return new BombedWall();
         }
 
-        public override RoomWithABomb MakeRoom(int n)
+        public Room MakeRoom(int n)
         {
             return new RoomWithABomb(n);
+        }
+
+        public Door MakeDoor(Room r1, Room r2)
+        {
+            return new Door(r1, r2);
         }
     }
 }

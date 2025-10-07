@@ -1,6 +1,7 @@
 ﻿using MazeLibrary;
 using MazeLibrary.Doors;
 using MazeLibrary.Rooms;
+using MazeLibrary.Walls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,30 +10,29 @@ using System.Threading.Tasks;
 
 namespace MazeAbstractFactory
 {
-    public class EnchantedMazeFactory : MazeFactory
+    public class EnchantedMazeFactory : IMazeFactory
     {
         public EnchantedMazeFactory() { }
 
-        public override Maze MakeMaze()
+        public Maze MakeMaze()
         {
             Console.WriteLine("----- Вы создали магический лабиринт -----");
             return new Maze();
         }
 
-        public override EnchantedRoom MakeRoom(int n)
+        public Room MakeRoom(int n)
         {
-            return new EnchantedRoom(n, CastSpell());
+            return new EnchantedRoom(n);
         }
 
-        public override DoorNeedingSpell MakeDoor(Room r1, Room r2)
+        public Door MakeDoor(Room r1, Room r2)
         {
-            return new DoorNeedingSpell(r1, r2);
+            return new EnchantedDoor(r1, r2);
         }
 
-        protected Spell CastSpell() 
+        public Wall MakeWall()
         {
-            Console.WriteLine("Вы использовали заклинание");
-            return new Spell();
+            return new Wall();
         }
     }
 }

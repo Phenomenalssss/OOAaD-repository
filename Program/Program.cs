@@ -1,5 +1,6 @@
 ﻿using MazeAbstractFactory;
 using MazeLibrary;
+using MazeLibrary.Rooms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +13,27 @@ namespace Program
     {
         static void Main(string[] args)
         {
-            MazeGameFactory game = new MazeGameFactory();
+            try
+            {
+                MazeGameFactory game = new MazeGameFactory();
 
-            MazeFactory justfactory = new MazeFactory();
-            game.CreateMaze(justfactory);
+                JustMazeFactory justfactory = new JustMazeFactory();
+                game.CreateMaze(justfactory);
 
-            EnchantedMazeFactory enchantedfactory = new EnchantedMazeFactory();
-            game.CreateMaze(enchantedfactory);
+                EnchantedMazeFactory enchantedfactory = new EnchantedMazeFactory();
+                game.CreateMaze(enchantedfactory);
 
-            BombedMazeFactory bombedfactory = new BombedMazeFactory();
-            game.CreateMaze(bombedfactory);
+                var room = new EnchantedRoom(3);
+                room.Enter();
+                room.CastSpell();
+
+                BombedMazeFactory bombedfactory = new BombedMazeFactory();
+                game.CreateMaze(bombedfactory);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ошибка: {0}", ex.Message);
+            }
         }
     }
 }
