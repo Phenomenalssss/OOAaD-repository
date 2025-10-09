@@ -6,5 +6,11 @@ using System.Threading.Tasks;
 
 namespace MazeLibrary
 {
-    public enum Direction {North, South, East, West};
+    public enum Direction
+    {
+        North,
+        South,
+        East,
+        West
+    };
 }

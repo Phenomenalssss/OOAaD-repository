@@ -12,7 +12,6 @@ namespace MazeAbstractFactory
 {
     public class JustMazeFactory : IMazeFactory
     {
-
         public Maze MakeMaze()
         {
             Console.WriteLine("----- Вы создали обычный лабиринт -----");
@@ -26,7 +25,14 @@ namespace MazeAbstractFactory
 
         public Room MakeRoom(int n)
         {
-            return new Room(n);
+            if (n <= 0)
+            {
+                throw new ArgumentException("Номер комнаты должен быть натуральным числом");
+            }
+            else
+            {
+                return new Room(n);
+            }
         }
 
         public Door MakeDoor(Room r1, Room r2)

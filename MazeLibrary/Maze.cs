@@ -5,6 +5,8 @@ namespace MazeLibrary
 {
     public class Maze
     {
+        private List<Room> _rooms = new List<Room>();
+
         public Maze() { }
 
         public Room RoomNumber(int n)
@@ -15,22 +17,22 @@ namespace MazeLibrary
             }
             else
             {
-                foreach(var room in rooms)
+                var room = _rooms.FirstOrDefault(r => r.RoomNumber == n);
+                if (room != null)
                 {
-                    if (room.roomNumber == n)
-                    {
-                        Console.WriteLine("Комната под номером {0} найдена", n);
-                        return room;
-                    }
+                    Console.WriteLine($"Комната под номером {n} найдена");
+                    return room;
                 }
-                throw new ArgumentException($"Комната под номером {n} не найдена");
+                else
+                {
+                    throw new ArgumentException($"Комната под номером {n} не найдена");
+                }
             }
         }
 
-        public List<Room> rooms = new List<Room>();
         public void AddRoom(Room room)
         {
-            rooms.Add(room);
+            _rooms.Add(room);
         }
     }
 }

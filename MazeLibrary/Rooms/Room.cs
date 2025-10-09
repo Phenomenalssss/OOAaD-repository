@@ -8,7 +8,7 @@ namespace MazeLibrary.Rooms
 {
     public class Room : MapSite
     {
-        public int roomNumber;
+        private int _roomNumber;
         private MapSite[] _sides = new MapSite[4];
 
         public Room(int n)
@@ -19,14 +19,20 @@ namespace MazeLibrary.Rooms
             }
             else
             {
-                roomNumber = n;
+                _roomNumber = n;
             }
+        }
+
+        public int RoomNumber
+        {
+            get { return _roomNumber; }
         }
 
         public override void Enter()
         {
-            Console.WriteLine("Вы вошли в комнату под номером {0}", roomNumber);
+            Console.WriteLine("Вы вошли в комнату под номером {0}", _roomNumber);
         }
+
         public MapSite GetSide(Direction dir)
         {
             return _sides[(int)dir];

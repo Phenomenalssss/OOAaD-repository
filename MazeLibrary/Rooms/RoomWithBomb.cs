@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace MazeLibrary.Rooms
 {
-    public class EnchantedRoom : Room
+    public class RoomWithBomb : Room
     {
         private int _roomNumber;
-        private Spell _spell;
         private MapSite[] _sides = new MapSite[4];
 
-        public EnchantedRoom(int n) : base(n)
+        public RoomWithBomb(int n) : base(n)
         {
             if (n <= 0)
             {
@@ -21,18 +20,12 @@ namespace MazeLibrary.Rooms
             else
             {
                 _roomNumber = n;
-                _spell = new Spell();
             }
-        }
-
-        public void CastSpell()
-        {
-            Console.WriteLine("Вы использовали заклинание");
         }
 
         public override void Enter()
         {
-            Console.WriteLine("Вы вошли в магическую комнату под номером {0}", _roomNumber);
+            Console.WriteLine("Вы вошли в комнату с бомбой под номером {0}", _roomNumber);
         }
     }
 }
