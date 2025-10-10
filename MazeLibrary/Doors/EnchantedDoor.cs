@@ -24,7 +24,7 @@ namespace MazeLibrary.Doors
         {
             if (_isOpen)
             {
-                Console.WriteLine("Вы прошли через магическую дверь между {0} и {1} комнатами", _room1.RoomNumber, _room2.RoomNumber);
+                Console.WriteLine("Вы прошли через магическую дверь между {0} и {1} комнатами", _room1.Number, _room2.Number);
             }
             else
             {

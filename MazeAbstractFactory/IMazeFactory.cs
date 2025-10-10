@@ -12,12 +12,12 @@ namespace MazeAbstractFactory
 {
     public interface IMazeFactory
     {
-        public Maze MakeMaze();
+        Maze MakeMaze();
 
-        public Wall MakeWall();
+        Wall MakeWall();
 
-        public Room MakeRoom(int n);
+        Room MakeRoom(int n);
 
-        public Door MakeDoor(Room r1, Room r2);
+        Door MakeDoor(Room r1, Room r2);
     }
 }

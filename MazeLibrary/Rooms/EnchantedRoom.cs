@@ -8,21 +8,11 @@ namespace MazeLibrary.Rooms
 {
     public class EnchantedRoom : Room
     {
-        private int _roomNumber;
-        private Spell _spell;
-        private MapSite[] _sides = new MapSite[4];
+        private readonly Spell _spell;
 
-        public EnchantedRoom(int n) : base(n)
+        public EnchantedRoom(int n) : base(n) 
         {
-            if (n <= 0)
-            {
-                throw new ArgumentException("Номер комнаты должен быть натуральным числом");
-            }
-            else
-            {
-                _roomNumber = n;
-                _spell = new Spell();
-            }
+            _spell = new Spell("Levitation");
         }
 
         public void CastSpell()
@@ -32,7 +22,7 @@ namespace MazeLibrary.Rooms
 
         public override void Enter()
         {
-            Console.WriteLine("Вы вошли в магическую комнату под номером {0}", _roomNumber);
+            Console.WriteLine($"Вы вошли в магическую комнату под номером {Number} с заклинанием {_spell.Name}");
         }
     }
 }

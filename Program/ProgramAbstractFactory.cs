@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Program
 {
-    class Program
+    class ProgramAbstractFactory
     {
         static void Main(string[] args)
         {
             try
             {
-                MazeGameFactory game = new MazeGameFactory();
+                MazeGame game = new MazeGame();
 
                 JustMazeFactory justfactory = new JustMazeFactory();
                 game.CreateMaze(justfactory);

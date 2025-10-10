@@ -26,10 +26,7 @@ namespace MazeAbstractFactory
             {
                 throw new ArgumentException("Номер комнаты должен быть натуральным числом");
             }
-            else
-            {
-                return new EnchantedRoom(n);
-            }
+            return new EnchantedRoom(n);
         }
 
         public Door MakeDoor(Room r1, Room r2)

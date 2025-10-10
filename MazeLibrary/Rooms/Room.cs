@@ -8,7 +8,6 @@ namespace MazeLibrary.Rooms
 {
     public class Room : MapSite
     {
-        private int _roomNumber;
         private MapSite[] _sides = new MapSite[4];
 
         public Room(int n)
@@ -17,20 +16,14 @@ namespace MazeLibrary.Rooms
             {
                 throw new ArgumentException("Номер комнаты должен быть натуральным числом");
             }
-            else
-            {
-                _roomNumber = n;
-            }
+            Number = n;
         }
+        public int Number { get; private init; }
 
-        public int RoomNumber
-        {
-            get { return _roomNumber; }
-        }
 
         public override void Enter()
         {
-            Console.WriteLine("Вы вошли в комнату под номером {0}", _roomNumber);
+            Console.WriteLine("Вы вошли в комнату под номером {0}", Number);
         }
 
         public MapSite GetSide(Direction dir)

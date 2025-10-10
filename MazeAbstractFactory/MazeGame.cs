@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MazeAbstractFactory
 {
-    public class MazeGameFactory
+    public class MazeGame
     {
         public Maze CreateMaze(IMazeFactory factory)
         {
@@ -25,7 +25,7 @@ namespace MazeAbstractFactory
             Maze.AddRoom(r1);
             Maze.AddRoom(r2);
 
-            Maze.RoomNumber(2);
+            Maze.GetRoomByNumber(2);
 
             Wall wall = factory.MakeWall();
             wall.Enter();
