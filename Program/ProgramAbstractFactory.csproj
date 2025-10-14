@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MazeAbstractFactory\MazeAbstractFactory.csproj" />
-    <ProjectReference Include="..\MazeLibrary\MazeLibrary.csproj" />
   </ItemGroup>
 
 </Project>
