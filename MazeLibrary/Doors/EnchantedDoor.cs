@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,27 +10,19 @@ namespace MazeLibrary.Doors
 {
     public class EnchantedDoor : Door
     {
-        private Room _room1;
-        private Room _room2;
-        private bool _isOpen;
+        public EnchantedDoor(Room room1, Room room2) : base(room1, room2) { }
 
-        public EnchantedDoor(Room r1, Room r2) : base(r1, r2)
+        public EnchantedDoor(Door otherDoor) : base(otherDoor) { }
+
+        public override Door Clone()
         {
-            _room1 = r1;
-            _room2 = r2;
-            _isOpen = true;
+            Console.WriteLine("Вы клонировали магическую дверь");
+            return new EnchantedDoor(this);
         }
 
-        public override void Enter()
+        protected override void EnterIsOpen(Room room1, Room room2)
         {
-            if (_isOpen)
-            {
-                Console.WriteLine("Вы прошли через магическую дверь между {0} и {1} комнатами", _room1.Number, _room2.Number);
-            }
-            else
-            {
-                Console.WriteLine("Дверь закрыта");
-            }
+            Console.WriteLine("Вы прошли через магическую дверь между {0} и {1} комнатами", room1.Number, room2.Number);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace MazeLibrary.Rooms
     {
         private readonly Spell _spell;
 
-        public EnchantedRoom(int n) : base(n) 
+        public EnchantedRoom(int number) : base(number) 
         {
             _spell = new Spell("Levitation");
         }

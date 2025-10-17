@@ -9,14 +9,24 @@ namespace MazeLibrary
 
         public Maze() { }
 
-        public Room GetRoomByNumber(int n)
+        public Maze(Maze otherMaze) 
         {
-            if (n <= 0)
+            _rooms = otherMaze._rooms;
+        }
+
+        public Maze Clone()
+        {
+            return new Maze(this);
+        }
+
+        public Room GetRoomByNumber(int number)
+        {
+            if (number <= 0)
             {
                 throw new ArgumentException("Номер комнаты должен быть натуральным числом");
             }
-            var room = _rooms.FirstOrDefault(r => r.Number == n) ?? throw new ArgumentException($"Комната №{n} не найдена");
-            Console.WriteLine($"Комната под номером {n} найдена");
+            var room = _rooms.FirstOrDefault(r => r.Number == number) ?? throw new ArgumentException($"Комната №{number} не найдена");
+            Console.WriteLine($"Комната под номером {number} найдена");
             return room;
         }
 

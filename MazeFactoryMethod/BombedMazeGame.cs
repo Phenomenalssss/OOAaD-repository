@@ -22,10 +22,10 @@ namespace MazeFactoryMethod
             return new BombedWall();
         }
 
-        public override Room MakeRoom(int n)
+        public override Room MakeRoom(int number)
         {
-            Console.WriteLine($"Вы создали комнату №{n} с бомбой");
-            return new RoomWithBomb(n);
+            Console.WriteLine($"Вы создали комнату №{number} с бомбой");
+            return new RoomWithBomb(number);
         }
     }
 }

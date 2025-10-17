@@ -24,12 +24,12 @@ namespace MazeBuilder
 
         public Maze GetMaze() { return null; }
 
-        public void BuildRoom(int n)
+        public void BuildRoom(int number)
         {
             _rooms++;
         }
 
-        public void BuildDoor(int n1, int n2)
+        public void BuildDoor(int number1, int number2)
         {
             _doors++;
         }

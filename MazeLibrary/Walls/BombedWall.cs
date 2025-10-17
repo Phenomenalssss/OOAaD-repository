@@ -8,9 +8,30 @@ namespace MazeLibrary.Walls
 {
     public class BombedWall : Wall
     {
-        public BombedWall() { }
+        private bool _bomb;
 
-        public override void Enter()
+        public BombedWall() 
+        {
+            _bomb = true;
+        }
+
+        public BombedWall(BombedWall otherBombedWall)
+        {
+            _bomb = otherBombedWall._bomb;
+        }
+
+        public override Wall Clone()
+        {
+            Console.WriteLine("Вы клонировали стену с бомбой");
+            return new BombedWall(this);
+        }
+
+        public bool HasBomb()
+        {
+            return _bomb;
+        }
+
+        public void Enter()
         {
             Console.WriteLine("Вы упёрлись в стену с бомбой");
         }

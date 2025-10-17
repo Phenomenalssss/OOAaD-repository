@@ -23,18 +23,18 @@ namespace MazeAbstractFactory
             return new Wall();
         }
 
-        public Room MakeRoom(int n)
+        public Room MakeRoom(int number)
         {
-            if (n <= 0)
+            if (number <= 0)
             {
                 throw new ArgumentException("Номер комнаты должен быть натуральным числом");
             }
-            return new Room(n);
+            return new Room(number);
         }
 
-        public Door MakeDoor(Room r1, Room r2)
+        public Door MakeDoor(Room room1, Room room2)
         {
-            return new Door(r1, r2);
+            return new Door(room1, room2);
         }
     }
 }

@@ -20,18 +20,18 @@ namespace MazeAbstractFactory
             return new Maze();
         }
 
-        public Room MakeRoom(int n)
+        public Room MakeRoom(int number)
         {
-            if (n <= 0)
+            if (number <= 0)
             {
                 throw new ArgumentException("Номер комнаты должен быть натуральным числом");
             }
-            return new EnchantedRoom(n);
+            return new EnchantedRoom(number);
         }
 
-        public Door MakeDoor(Room r1, Room r2)
+        public Door MakeDoor(Room room1, Room room2)
         {
-            return new EnchantedDoor(r1, r2);
+            return new EnchantedDoor(room1, room2);
         }
 
         public Wall MakeWall()

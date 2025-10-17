@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MazeLibrary.Doors
 {
@@ -11,20 +12,46 @@ namespace MazeLibrary.Doors
     {
         private Room _room1;
         private Room _room2;
-        private bool _isOpen;
+        protected bool IsOpen { get; private set; }
 
-        public Door(Room r1, Room r2)
+        public Door() { }
+
+        public Door(Door otherDoor) 
         {
-            _room1 = r1;
-            _room2 = r2;
-            _isOpen = true;
+            _room1 = otherDoor._room1;
+            _room2 = otherDoor._room2;
         }
 
-        public override void Enter()
+        public Door(Room room1, Room room2)
         {
-            if (_isOpen)
+            _room1 = room1;
+            _room2 = room2;
+            IsOpen = true;
+        }
+
+        public void Initialize(Room room1, Room room2)
+        {
+            Console.WriteLine($"Вы изменили комнаты, между которыми находится дверь (№{_room1.Number} -> №{room1.Number}, №{_room2.Number} -> №{room2.Number})");
+            _room1 = room1;
+            _room2 = room2;
+        }
+
+        protected virtual void EnterIsOpen(Room room1, Room room2) 
+        {
+            Console.WriteLine("Вы прошли через дверь между {0} и {1} комнатами", _room1.Number, _room2.Number);
+        }
+
+        public virtual Door Clone()
+        {
+            Console.WriteLine("Вы клонировали обычную дверь");
+            return new Door(this);
+        }
+
+        public void Enter()
+        {
+            if (IsOpen)
             {
-                Console.WriteLine("Вы прошли через дверь между {0} и {1} комнатами", _room1.Number, _room2.Number);
+                EnterIsOpen(_room1, _room2);
             }
             else
             {

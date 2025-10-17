@@ -6,7 +6,7 @@ using MazeLibrary.Doors;
 
 namespace MazePrototype
 {
-    public class MazePrototypeFactory : JustMazeFactory
+    public class MazePrototypeFactory : IMazeFactory
     {
         private Maze _prototypeMaze;
         private Room _prototypeRoom;
@@ -21,15 +21,26 @@ namespace MazePrototype
             _prototypeWall = wall;
         }
 
-        public virtual Wall MakeWall()
+        public Maze MakeMaze()
+        {
+            return _prototypeMaze.Clone();
+        }
+
+        public Room MakeRoom(int number) 
+        {
+            _prototypeRoom.Initialize(number);
+            return _prototypeRoom;
+        }
+
+        public Wall MakeWall()
         {
             return _prototypeWall.Clone();
         }
 
-        public virtual Door MakeDoor(Room r1, Room r2)
+        public Door MakeDoor(Room room1, Room room2)
         {
             Door door = _prototypeDoor.Clone();
-            door.Initialize(r1, r2);
+            door.Initialize(room1, room2);
             return door;
         }
     }

@@ -31,13 +31,13 @@ namespace MazeBuilder
             return _currentMaze;
         }
 
-        public void BuildRoom(int n)
+        public void BuildRoom(int number)
         {
-            if (n <= 0)
+            if (number <= 0)
             {
                 throw new ArgumentException("Номер комнаты должен быть натуральным числом");
             }
-            Room room = new Room(n);
+            Room room = new Room(number);
             _currentMaze.AddRoom(room);
 
             room.SetSide(Direction.North, new Wall());
@@ -45,22 +45,22 @@ namespace MazeBuilder
             room.SetSide(Direction.East, new Wall());
             room.SetSide(Direction.West, new Wall());
 
-            Console.WriteLine($"Вы построили комнату №{n}");
+            Console.WriteLine($"Вы построили комнату №{number}");
         }
 
-        public void BuildDoor(int n1, int n2)
+        public void BuildDoor(int number1, int number2)
         {
-            Room r1 = _currentMaze.GetRoomByNumber(n1);
-            Room r2 = _currentMaze.GetRoomByNumber(n2);
-            Door d = new Door(r1, r2);
+            Room room1 = _currentMaze.GetRoomByNumber(number1);
+            Room room2 = _currentMaze.GetRoomByNumber(number2);
+            Door door = new Door(room1, room2);
 
-            r1.SetSide(CommonWall(r1, r2), d);
-            r1.SetSide(CommonWall(r1, r2), d);
+            room1.SetSide(CommonWall(room1, room2), door);
+            room1.SetSide(CommonWall(room1, room2), door);
 
-            Console.WriteLine($"Вы построили дверь между комнатам №{r1.Number} и №{r2.Number}");
+            Console.WriteLine($"Вы построили дверь между комнатам №{room1.Number} и №{room2.Number}");
         }
 
-        public Direction CommonWall(Room r1, Room r2)
+        public Direction CommonWall(Room room1, Room room2)
         {
             return Direction.North;
         }

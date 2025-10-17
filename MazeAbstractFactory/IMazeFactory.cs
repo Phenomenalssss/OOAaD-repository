@@ -16,8 +16,8 @@ namespace MazeAbstractFactory
 
         Wall MakeWall();
 
-        Room MakeRoom(int n);
+        Room MakeRoom(int number);
 
-        Door MakeDoor(Room r1, Room r2);
+        Door MakeDoor(Room room1, Room room2);
     }
 }

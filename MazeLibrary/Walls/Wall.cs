@@ -10,7 +10,13 @@ namespace MazeLibrary.Walls
     {
         public Wall() { }
 
-        public override void Enter() 
+        public virtual Wall Clone()
+        {
+            Console.WriteLine("Вы клонировали обычную стену");
+            return new Wall();
+        }
+
+        public void Enter() 
         {
             Console.WriteLine("Вы упёрлись в стену");
         }

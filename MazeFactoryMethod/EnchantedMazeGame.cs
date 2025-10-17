@@ -17,16 +17,16 @@ namespace MazeFactoryMethod
             return new Maze();
         }
 
-        public override Room MakeRoom(int n)
+        public override Room MakeRoom(int number)
         {
-            Console.WriteLine($"Вы создали магическую комнату №{n}");
-            return new EnchantedRoom(n);
+            Console.WriteLine($"Вы создали магическую комнату №{number}");
+            return new EnchantedRoom(number);
         }
 
-        public override Door MakeDoor(Room r1, Room r2)
+        public override Door MakeDoor(Room room1, Room room2)
         {
-            Console.WriteLine($"Вы создали магическую дверь между комнатами №{r1.Number} и №{r2.Number}");
-            return new EnchantedDoor(r1, r2);
+            Console.WriteLine($"Вы создали магическую дверь между комнатами №{room1.Number} и №{room2.Number}");
+            return new EnchantedDoor(room1, room2);
         }
     }
 }

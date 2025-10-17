@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MazeLibrary.Walls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace MazeLibrary.Rooms
 {
     public class RoomWithBomb : Room
     {
-        public RoomWithBomb(int n) : base(n) { }
+        public RoomWithBomb(int number) : base(number) { }
 
         public override void Enter()
         {

@@ -15,17 +15,19 @@ namespace MazeAbstractFactory
         public Maze CreateMaze(IMazeFactory factory)
         {
             Maze Maze = factory.MakeMaze();
-            Room r1 = factory.MakeRoom(1);
+            Room r1 = factory.MakeRoom(9999);
             r1.Enter();
-            Room r2 = factory.MakeRoom(2);
+            Room r2 = factory.MakeRoom(1111);
             r2.Enter();
+            Room r3 = factory.MakeRoom(5555);
+            r3.Enter();
             Door theDoor = factory.MakeDoor(r1, r2);
             theDoor.Enter();
 
             Maze.AddRoom(r1);
             Maze.AddRoom(r2);
 
-            Maze.GetRoomByNumber(2);
+            Maze.GetRoomByNumber(r1.Number);
 
             Wall wall = factory.MakeWall();
             wall.Enter();
@@ -39,6 +41,8 @@ namespace MazeAbstractFactory
             r2.SetSide(Direction.East, factory.MakeWall());
             r2.SetSide(Direction.South, factory.MakeWall());
             r2.SetSide(Direction.West, theDoor);
+
+            Console.WriteLine("----------");
 
             return Maze;
         }
