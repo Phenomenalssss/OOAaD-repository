@@ -6,19 +6,24 @@ using MazeLibrary.Doors;
 
 namespace MazePrototype
 {
-    public class MazePrototypeFactory : IMazeFactory
+    public class JustMazePrototype : IPrototype
     {
         private Maze _prototypeMaze;
         private Room _prototypeRoom;
         private Wall _prototypeWall;
         private Door _prototypeDoor;
 
-        public MazePrototypeFactory(Maze maze, Wall wall, Room room, Door door)
+        public JustMazePrototype(Maze maze, Wall wall, Room room, Door door)
         {
             _prototypeDoor = door;
             _prototypeMaze = maze;
             _prototypeRoom = room;
             _prototypeWall = wall;
+        }
+
+        public void Clone()
+        {
+
         }
 
         public Maze MakeMaze()

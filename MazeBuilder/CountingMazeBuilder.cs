@@ -11,6 +11,7 @@ namespace MazeBuilder
     {
         private int _rooms;
         private int _doors;
+        private Maze _currentMaze;
 
         public CountingMazeBuilder()
         {
@@ -20,9 +21,13 @@ namespace MazeBuilder
         public void BuildMaze() 
         {
             Console.WriteLine("----- Вы построили лабиринт-счётчик -----");
+            _currentMaze = new Maze();
         }
 
-        public Maze GetMaze() { return null; }
+        public Maze GetMaze() 
+        { 
+            return _currentMaze; 
+        }
 
         public void BuildRoom(int number)
         {
@@ -34,10 +39,9 @@ namespace MazeBuilder
             _doors++;
         }
 
-        public void GetCounts(out int rooms, out int doors)
+        public (int rooms, int doors) GetCounts()
         {
-            rooms = _rooms;
-            doors = _doors;
+            return (_rooms, _doors);
         }
     }
 }

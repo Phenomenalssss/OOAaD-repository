@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace MazeFactoryMethod
 {
-    public class MazeGame
+    public class MazeCreator
     {
         public Maze CreateMaze() 
         {
@@ -31,24 +31,24 @@ namespace MazeFactoryMethod
             return maze;
         }
 
-        public virtual Maze MakeMaze()
+        protected virtual Maze MakeMaze()
         {
             Console.WriteLine("----- Вы создали обычный лабиринт -----");
             return new Maze();
         }
 
-        public virtual Room MakeRoom(int n)
+        protected virtual Room MakeRoom(int n)
         {
             Console.WriteLine($"Вы создали обычную комнату №{n}");
             return new Room(n);
         }
 
-        public virtual Wall MakeWall()
+        protected virtual Wall MakeWall()
         {
             return new Wall();
         }
 
-        public virtual Door MakeDoor(Room r1, Room r2)
+        protected virtual Door MakeDoor(Room r1, Room r2)
         {
             Console.WriteLine($"Вы создали обычную дверь между комнатами №{r1.Number} и №{r2.Number}");
             return new Door(r1, r2);

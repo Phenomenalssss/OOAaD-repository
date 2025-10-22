@@ -6,14 +6,14 @@ namespace Program
     {
         static void Main(string[] args)
         {
-            MazeGame justgame = new MazeGame();
-            justgame.CreateMaze();
+            MazeCreator justmaze = new MazeCreator();
+            justmaze.CreateMaze();
 
-            EnchantedMazeGame enchactedgame = new EnchantedMazeGame();
-            enchactedgame.CreateMaze();
+            EnchantedMazeCreator enchactedmaze = new EnchantedMazeCreator();
+            enchactedmaze.CreateMaze();
 
-            BombedMazeGame bombedgame = new BombedMazeGame();
-            bombedgame.CreateMaze();
+            BombedMazeCreator bombedmaze = new BombedMazeCreator();
+            bombedmaze.CreateMaze();
         }
     }
 }

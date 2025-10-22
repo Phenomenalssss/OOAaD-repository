@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace MazeBuilder
 {
-    public class StandardMazeBuilder : IMazeBuilder
+    public class JustMazeBuilder : IMazeBuilder
     {
         private Maze _currentMaze;
 
-        public StandardMazeBuilder()
+        public JustMazeBuilder()
         {
             _currentMaze = null;
         }

@@ -10,7 +10,5 @@ namespace MazeBuilder
         void BuildRoom(int room);
 
         void BuildDoor(int roomFrom, int roomTo);
-
-        Maze GetMaze();
     }
 }

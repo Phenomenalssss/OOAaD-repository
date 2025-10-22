@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic.FileIO;
 
 namespace Program
 {
@@ -15,17 +16,23 @@ namespace Program
         {
             try
             {
-                Maze maze = new Maze();
-                MazeBuilder.MazeGame game = new MazeBuilder.MazeGame();
-                StandardMazeBuilder builder = new StandardMazeBuilder();
+                Maze justMaze = new Maze();
+                JustDirector justDirector = new JustDirector();
+                JustMazeBuilder builder = new JustMazeBuilder();
 
-                game.CreateMaze(builder);
-                maze = builder.GetMaze();
+                justDirector.CreateMaze(builder);
+                justMaze = builder.GetMaze();
 
+                Maze countingMaze = new Maze();
                 int rooms, doors;
-                CountingMazeBuilder countingbuilder = new CountingMazeBuilder();
-                game.CreateComplexMaze(countingbuilder);
-                countingbuilder.GetCounts(out rooms, out doors);
+                CountingDirector countingDirector = new CountingDirector();
+                CountingMazeBuilder countingBuilder = new CountingMazeBuilder();
+
+                countingDirector.CreateMaze(countingBuilder);
+                countingMaze = countingBuilder.GetMaze();
+
+                rooms = countingBuilder.GetCounts().rooms;
+                doors = countingBuilder.GetCounts().doors;
                 Console.WriteLine($"В лабиринте {rooms} комнат и {doors} дверей");
             }
             catch (Exception ex)
