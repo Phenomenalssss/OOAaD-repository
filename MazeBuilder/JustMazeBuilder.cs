@@ -60,7 +60,7 @@ namespace MazeBuilder
             Console.WriteLine($"Вы построили дверь между комнатам №{room1.Number} и №{room2.Number}");
         }
 
-        public Direction CommonWall(Room room1, Room room2)
+        private Direction CommonWall(Room room1, Room room2)
         {
             return Direction.North;
         }

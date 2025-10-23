@@ -11,23 +11,13 @@ namespace MazeBuilder
     {
         private int _rooms;
         private int _doors;
-        private Maze _currentMaze;
 
         public CountingMazeBuilder()
         {
             _rooms = _doors = 0;
         }
 
-        public void BuildMaze() 
-        {
-            Console.WriteLine("----- Вы построили лабиринт-счётчик -----");
-            _currentMaze = new Maze();
-        }
-
-        public Maze GetMaze() 
-        { 
-            return _currentMaze; 
-        }
+        public void BuildMaze() { }
 
         public void BuildRoom(int number)
         {
