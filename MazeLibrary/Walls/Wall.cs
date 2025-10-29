@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace MazeLibrary.Walls
 {
-    public class Wall : MapSite
+    public class Wall : IMapSite
     {
         public Wall() { }
 
-        public virtual Wall Clone()
+        public Wall(Wall otherWall) { }
+
+        public virtual IMapSite Clone()
         {
             Console.WriteLine("Вы клонировали обычную стену");
-            return new Wall();
+            return new Wall(this);
         }
 
         public void Enter() 

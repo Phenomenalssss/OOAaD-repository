@@ -8,11 +8,26 @@ namespace MazeLibrary.Rooms
 {
     public class EnchantedRoom : Room
     {
-        private readonly Spell _spell;
+        private Spell _spell;
 
         public EnchantedRoom(int number) : base(number) 
         {
             _spell = new Spell("Levitation");
+        }
+
+        public EnchantedRoom(EnchantedRoom otherRoom) : base(otherRoom)
+        {
+            _spell = otherRoom._spell;
+        }
+
+        public void Initialize(Spell spell)
+        {
+            _spell = spell;
+        }
+
+        public override Room Clone()
+        {
+            return new EnchantedRoom(this);
         }
 
         public void CastSpell()

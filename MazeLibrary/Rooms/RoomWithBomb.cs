@@ -9,7 +9,22 @@ namespace MazeLibrary.Rooms
 {
     public class RoomWithBomb : Room
     {
-        public RoomWithBomb(int number) : base(number) { }
+        private bool _bomb;
+
+        public RoomWithBomb(int number) : base(number)
+        {
+            _bomb = true;
+        }
+
+        public RoomWithBomb(RoomWithBomb otherRoom) : base(otherRoom)
+        {
+            _bomb = otherRoom._bomb;
+        }
+        
+        public bool HasBomb()
+        {
+            return _bomb;
+        }
 
         public override void Enter()
         {

@@ -21,7 +21,7 @@ namespace Program
                 JustMazeBuilder builder = new JustMazeBuilder();
 
                 justDirector.CreateMaze(builder);
-                justMaze = builder.GetMaze();
+                justMaze = builder.GetMaze(); 
 
                 Maze countingMaze = new Maze();
                 int rooms, doors;
@@ -29,7 +29,6 @@ namespace Program
                 CountingMazeBuilder countingBuilder = new CountingMazeBuilder();
 
                 countingDirector.CreateMaze(countingBuilder);
-                countingMaze = countingBuilder.GetMaze();
 
                 rooms = countingBuilder.GetCounts().rooms;
                 doors = countingBuilder.GetCounts().doors;

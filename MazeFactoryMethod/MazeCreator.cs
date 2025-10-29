@@ -29,7 +29,7 @@ namespace MazeFactoryMethod
             r2.SetSide(Direction.West, door);
 
             return maze;
-        }
+        } 
 
         protected virtual Maze MakeMaze()
         {

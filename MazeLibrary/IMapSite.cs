@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace MazeLibrary
 {
-    public interface MapSite
+    public interface IMapSite
     {
-         void Enter();
+        void Enter();
+
+        IMapSite Clone();
     }
 }
