@@ -38,6 +38,7 @@ namespace MazeLibrary.Rooms
 
         public virtual IMapSite Clone()
         {
+            Console.WriteLine("Вы клонировали обычную комнату");
             return new Room(this);
         }
 

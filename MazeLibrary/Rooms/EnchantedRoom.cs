@@ -27,6 +27,7 @@ namespace MazeLibrary.Rooms
 
         public override Room Clone()
         {
+            Console.WriteLine("Вы клонировали магическую комнату");
             return new EnchantedRoom(this);
         }
 

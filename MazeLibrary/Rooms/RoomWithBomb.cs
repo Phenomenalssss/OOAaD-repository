@@ -20,7 +20,13 @@ namespace MazeLibrary.Rooms
         {
             _bomb = otherRoom._bomb;
         }
-        
+
+        public override Room Clone()
+        {
+            Console.WriteLine("Вы клонировали комнату с бомбой");
+            return new RoomWithBomb(this);
+        }
+
         public bool HasBomb()
         {
             return _bomb;
