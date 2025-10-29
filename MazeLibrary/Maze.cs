@@ -11,7 +11,10 @@ namespace MazeLibrary
 
         public Maze(Maze otherMaze) 
         {
-            _rooms = otherMaze._rooms;
+            foreach(var room in otherMaze._rooms)
+            {
+                _rooms.Add((Room) room.Clone());
+            }
         }
 
         public Maze Clone()
