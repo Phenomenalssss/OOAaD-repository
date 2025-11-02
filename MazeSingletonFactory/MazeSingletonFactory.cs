@@ -9,7 +9,7 @@ namespace Singleton
 {
     public class MazeSingletonFactory : IMazeFactory
     {
-        static private IMazeFactory _instance = null;
+        private static IMazeFactory? _instance = null;
 
         private MazeSingletonFactory() { }
 
@@ -18,7 +18,7 @@ namespace Singleton
             if (_instance == null)
             {
                 Console.WriteLine("Вы создали единственный экземпляр лабиринта");
-                _instance = new JustMazeFactory();
+                _instance = new MazeSingletonFactory();
             }
             Console.WriteLine($"Экземпляр лабиринта уже существует");
             return _instance;

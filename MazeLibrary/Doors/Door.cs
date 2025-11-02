@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -18,8 +19,9 @@ namespace MazeLibrary.Doors
 
         public Door(Door otherDoor) 
         {
-            _room1 = otherDoor._room1;
-            _room2 = otherDoor._room2;
+            _room1 = (Room) otherDoor._room1.Clone();
+            _room2 = (Room) otherDoor._room2.Clone();
+            IsOpen = true;
         }
 
         public Door(Room room1, Room room2)
