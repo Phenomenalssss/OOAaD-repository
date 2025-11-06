@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.NetworkInformation;
+using System.Text;
+using System.Threading.Tasks;
+using DriverForRemoteControlFacade;
+
+namespace RemoteControlFacade
+{
+    public class RemoteControl
+    {
+        public static void Use(DriverForRemoteControl driverForRemoteControl)
+        {
+            driverForRemoteControl.Operation();
+        }
+    }
+}
