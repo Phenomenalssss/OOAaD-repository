@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DuckAndTurkeyAdapter
 {
-    public interface IBird
+    public interface IDuck
     {
         public void Name();
 

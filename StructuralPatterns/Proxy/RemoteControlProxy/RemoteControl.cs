@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RemoteControlBridge
+namespace RemoteControlProxy
 {
     public class RemoteControl
     {
-        public static void Use(Power power, DriverForRemoteControl DriverForRemoteControl)
+        public static void Use(Power power, IDriver driver)
         {
             power.TurnOn();
-            DriverForRemoteControl.Operation();
+            driver.Operation();
             power.TurnOff();
         }
     }

@@ -13,7 +13,7 @@ namespace RemoteControlBridge
         private Sound _sound;
         private Channel _channel;
 
-        public ExtendedDriverForRemoteControl(Power power, Settings settings, Sound sound, Channel channel) : base(power, settings)
+        public ExtendedDriverForRemoteControl(Settings settings, Sound sound, Channel channel) : base(settings)
         { 
             _sound = sound;
             _channel = channel;
@@ -21,11 +21,8 @@ namespace RemoteControlBridge
 
         public override void Operation()
         {
-            Console.WriteLine("Расширенный пульт:");
-            _power.TurnOn();
-            _settings.BrightnessUp();
-            _settings.BrightnessUp();
-            _settings.BrightnessDown();
+            Console.WriteLine("---------- Расширенный пульт ----------");
+            base.Operation();
             _channel.List();
             _channel.Previous();
             _channel.Next();
@@ -38,11 +35,7 @@ namespace RemoteControlBridge
             _sound.VolumeMute();
             _sound.VolumeUp();
             _sound.VolumeUnMute();
-            _settings.Subtitles();
-            _settings.SetBrightness(77);
-            _settings.InformationAboutRemoteControl();
-            _power.TurnOff();
-            Console.WriteLine();
+            Console.WriteLine("---------- Расширенный пульт ----------");
         }
     }
 }

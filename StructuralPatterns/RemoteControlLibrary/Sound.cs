@@ -8,33 +8,28 @@ namespace RemoteControlLibrary
 {
     public class Sound
     {
-        private int _volume = 50;
         private bool _inMute = false;
         private int _volumeForMute;
+        private const int _maxVolume = 100;
+        private const int _minVolume = 0;
 
-        public int Volume
-        {
-            get { return _volume; }
-            private set;
-        }
+        public int Volume { get; private set; } = 50;
 
         public void VolumeUp()
         {
             if (_inMute)
             {
-                Console.WriteLine("Ошибка. Звук выключен.");
+                VolumeUnMute();
+            }
+
+            if (Volume == _maxVolume)
+            {
+                Console.WriteLine("Ошибка. Звук на максимальной громкости");
             }
             else
             {
-                if (_volume == 100)
-                {
-                    Console.WriteLine("Ошибка. Звук на максимальной громкости");
-                }
-                else
-                {
-                    _volume += 10;
-                    Console.WriteLine($"Увеличение громкости ({_volume})");
-                }
+                Volume += 10;
+                Console.WriteLine($"Увеличение громкости ({Volume})");
             }
         }
 
@@ -42,19 +37,17 @@ namespace RemoteControlLibrary
         {
             if (_inMute)
             {
-                Console.WriteLine("Ошибка. Звук выключен.");
+                VolumeUnMute();
+            }
+
+            if (Volume == _minVolume)
+            {
+                Console.WriteLine("Ошибка. Звук на минимальной громкости");
             }
             else
             {
-                if (_volume == 0)
-                {
-                    Console.WriteLine("Ошибка. Звук на минимальной громкости");
-                }
-                else
-                {
-                    _volume -= 10;
-                    Console.WriteLine($"Уменьшение громкости ({_volume})");
-                }
+                Volume -= 10;
+                Console.WriteLine($"Уменьшение громкости ({Volume})");
             }
         }
 
@@ -66,8 +59,8 @@ namespace RemoteControlLibrary
             }
             else
             {
-                _volumeForMute = _volume;
-                _volume = 0;
+                _volumeForMute = Volume;
+                Volume = 0;
                 Console.WriteLine("Звук выключен");
                 _inMute = true;
             }
@@ -81,7 +74,7 @@ namespace RemoteControlLibrary
             }
             else
             {
-                _volume = _volumeForMute;
+                Volume = _volumeForMute;
                 Console.WriteLine("Звук включён");
                 _inMute = false;
             }

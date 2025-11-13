@@ -9,13 +9,10 @@ namespace RemoteControlLibrary
     public class Settings
     {
         private bool _subtitles = false;
-        private int _brightness = 50;
+        private const int _maxBrightness = 100;
+        private const int _minBrightness = 0;
 
-        public int Brightness
-        {
-            get { return _brightness; }
-            private set;
-        }
+        public int Brightness { get; private set; } = 50;
 
         public void Subtitles()
         {
@@ -33,43 +30,47 @@ namespace RemoteControlLibrary
 
         public void SetBrightness(int brightness)
         {
-            if (brightness <= -1 || brightness >= 101)
+            if (brightness <= _maxBrightness && brightness >= _minBrightness)
             {
-                _brightness = brightness;
-                Console.WriteLine($"Установлена яркость: {_brightness}");
+                Brightness = brightness;
+                Console.WriteLine($"Установлена яркость: {Brightness}");
+            }
+            else
+            {
+                Console.WriteLine("Ошибка. Неверное значение яркости");
             }
         }
 
         public void BrightnessUp()
         {
-            if (_brightness >= 100)
+            if (Brightness >= _maxBrightness)
             {
                 Console.WriteLine("Ошибка. Яркость на максмимальном значении");
             }
             else
             {
-                _brightness += 10;
-                Console.WriteLine($"Яркость увеличена ({_brightness})");
+                Brightness += 10;
+                Console.WriteLine($"Яркость увеличена ({Brightness})");
             }
         }
 
         public void BrightnessDown()
         {
-            if (_brightness <= 0)
+            if (Brightness <= _minBrightness)
             {
                 Console.WriteLine("Ошибка. Яркость на минимальном значении");
             }
             else
             {
-                _brightness -= 10;
-                Console.WriteLine($"Яркость снижена ({_brightness})");
+                Brightness -= 10;
+                Console.WriteLine($"Яркость снижена ({Brightness})");
             }
         }
 
         public void InformationAboutRemoteControl()
         {
             Console.WriteLine("-----");
-            Console.WriteLine("Модель пульта: Facade");
+            Console.WriteLine("Модель пульта: Phenomenals");
             Console.WriteLine("Версия: 3.4.2");
             Console.WriteLine("Дата выпуска: 02.11.2025");
             Console.WriteLine("-----");

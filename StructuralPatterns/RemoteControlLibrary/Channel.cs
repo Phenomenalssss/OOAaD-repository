@@ -9,8 +9,13 @@ namespace RemoteControlLibrary
     public class Channel
     {
         private static List<int> _channels = new List<int> {1, 3, 5, 7, 9, 11, 13, 15, 17, 19};
-        private static int _number = 0;
-        private int _currentChannel = _channels[_number];
+        private int _number = 0;
+        private int _currentChannel;
+
+        public Channel()
+        {
+            _currentChannel = _channels[_number];
+        }
 
         public void List()
         {

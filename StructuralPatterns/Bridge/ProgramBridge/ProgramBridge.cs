@@ -13,11 +13,15 @@ namespace ProgramBridge
             Channel channel = new Channel();
             DriverForRemoteControl driver;
 
-            driver = new DriverForRemoteControl(power, settings);
-            RemoteControl.Use(driver);
+            driver = new DriverForRemoteControl(settings);
+            RemoteControl.Use(power, driver);
 
-            driver = new ExtendedDriverForRemoteControl(power, settings, sound, channel);
-            RemoteControl.Use(driver);
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            driver = new ExtendedDriverForRemoteControl(settings, sound, channel);
+            RemoteControl.Use(power, driver);
         }
     }
 }

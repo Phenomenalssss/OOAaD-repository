@@ -8,12 +8,12 @@ namespace Program
     {
         static void Main(string[] args)
         {
-            IBird duck = new Duck();
+            IDuck duck = new Duck();
             duck.Name();
             duck.Voice();
             duck.CanFly();
 
-            IBird turkey = new AdapterForDuckAndTurkey(new Turkey());
+            IDuck turkey = new AdapterForDuckAndTurkey(new Turkey());
             turkey.Name();
             turkey.Voice();
             turkey.CanFly();

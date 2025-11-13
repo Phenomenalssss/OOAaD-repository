@@ -7,7 +7,7 @@ using RemoteControlLibrary;
 
 namespace RemoteControlDecorator
 {
-    public class Decorator : Driver
+    public abstract class Decorator : Driver
     {
         private Driver _driver;
 
@@ -23,14 +23,7 @@ namespace RemoteControlDecorator
 
         public override void Operation()
         {
-            if (_driver != null)
-            {
-                _driver.Operation();
-            }
-            else
-            {
-                new Exception("Ошибка. Данного драйвера не существует");
-            }
+            _driver.Operation();
         }
     }
 }

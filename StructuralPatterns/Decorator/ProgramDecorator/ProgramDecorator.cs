@@ -31,11 +31,6 @@ namespace ProgramDecorator
             Console.WriteLine("---------------------- Пульт с Power + Settings + Sound + Channel ----------------------");
             mainDriver = new ChannelDecorator(mainDriver, channelDriver);
             RemoteControl.Use(power, mainDriver);
-
-            Console.WriteLine("---------------------- Пульт с Power + Sound ----------------------");
-            Decorator mainDriverTwo = new Decorator(mainDriver);
-            mainDriverTwo.SetComponent(soundDriver);
-            RemoteControl.Use(power, mainDriverTwo);
         }
     }
 }
