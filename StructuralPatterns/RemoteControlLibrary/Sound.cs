@@ -79,5 +79,17 @@ namespace RemoteControlLibrary
                 _inMute = false;
             }
         }
+
+        public void SetVolumeForYoutube()
+        {
+            Volume = 75;
+            Console.WriteLine("Звук установлен для Youtube (75)");
+        }
+
+        public void SetVolumeForTwitch()
+        {
+            Volume = 60;
+            Console.WriteLine("Звук установлен для Twitch (60)");
+        }
     }
 }

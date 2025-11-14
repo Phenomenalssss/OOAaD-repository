@@ -14,14 +14,16 @@ namespace ProgramBridge
             DriverForRemoteControl driver;
 
             driver = new DriverForRemoteControl(settings);
-            RemoteControl.Use(power, driver);
+            RemoteControl remoteControl = new RemoteControl(power, driver);
+            remoteControl.Use();
 
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
 
             driver = new ExtendedDriverForRemoteControl(settings, sound, channel);
-            RemoteControl.Use(power, driver);
+            remoteControl = new ExtendedRemoteControl(power, sound, channel, driver);
+            remoteControl.Use();
         }
     }
 }

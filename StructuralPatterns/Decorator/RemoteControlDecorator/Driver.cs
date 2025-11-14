@@ -1,6 +1,6 @@
 ﻿namespace RemoteControlDecorator
 {
-    public class Driver
+    public abstract class Driver
     {
         public virtual void Operation() { }
     }

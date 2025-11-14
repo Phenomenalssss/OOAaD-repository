@@ -9,11 +9,22 @@ namespace RemoteControlBridge
 {
     public class RemoteControl
     {
-        public static void Use(Power power, DriverForRemoteControl DriverForRemoteControl)
+        private Power _power;
+        private DriverForRemoteControl _driverForRemoteControl;
+
+        public RemoteControl(Power power, DriverForRemoteControl driverForRemoteControl)
         {
-            power.TurnOn();
-            DriverForRemoteControl.Operation();
-            power.TurnOff();
+            _power = power;
+            _driverForRemoteControl = driverForRemoteControl;
+        }
+
+        public virtual void Use()
+        {
+            Console.WriteLine("---------- Абстрактный пульт ----------");
+            _power.TurnOn();
+            _driverForRemoteControl.Operation();
+            _power.TurnOff();
+            Console.WriteLine("---------- Абстрактный пульт ----------");
         }
     }
 }

@@ -21,7 +21,7 @@ namespace RemoteControlBridge
 
         public override void Operation()
         {
-            Console.WriteLine("---------- Расширенный пульт ----------");
+            Console.WriteLine("---------- Расширенный драйвер ----------");
             base.Operation();
             _channel.List();
             _channel.Previous();
@@ -35,7 +35,7 @@ namespace RemoteControlBridge
             _sound.VolumeMute();
             _sound.VolumeUp();
             _sound.VolumeUnMute();
-            Console.WriteLine("---------- Расширенный пульт ----------");
+            Console.WriteLine("---------- Расширенный драйвер ----------");
         }
     }
 }

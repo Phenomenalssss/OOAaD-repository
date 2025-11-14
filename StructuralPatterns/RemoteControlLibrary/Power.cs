@@ -12,7 +12,7 @@ namespace RemoteControlLibrary
 
         public void TurnOn()
         {
-            if (_power == true)
+            if (_power)
             {
                 Console.WriteLine("Ошибка. Телевизор уже включён");
             }
@@ -25,7 +25,7 @@ namespace RemoteControlLibrary
 
         public void TurnOff()
         {
-            if (_power == false)
+            if (!_power)
             {
                 Console.WriteLine("Ошибка. Телевизор уже выключен");
             }

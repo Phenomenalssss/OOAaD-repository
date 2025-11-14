@@ -16,11 +16,6 @@ namespace RemoteControlDecorator
             _driver = driver;
         }
 
-        public void SetComponent(Driver driver)
-        {
-            _driver = driver;
-        }
-
         public override void Operation()
         {
             _driver.Operation();

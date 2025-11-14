@@ -25,9 +25,11 @@ namespace DriverForRemoteControlFacade
             _settings.BrightnessDown();
             _channel.List();
             _channel.Previous();
+            _channel.Back();
             _channel.Next();
             _channel.Next();
             _channel.ForNumber(7);
+            _channel.ForNumber(8);
             _sound.VolumeUp();
             _sound.VolumeUp();
             _sound.VolumeUp();
@@ -37,7 +39,6 @@ namespace DriverForRemoteControlFacade
             _sound.VolumeUnMute();
             _settings.Subtitles();
             _settings.SetBrightness(77);
-            _settings.InformationAboutRemoteControl();
             _power.TurnOff();
         }
     }

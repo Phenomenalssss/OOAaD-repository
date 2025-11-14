@@ -23,7 +23,6 @@ namespace RemoteControlProxy
             _settings.BrightnessDown();
             _settings.Subtitles();
             _settings.SetBrightness(77);
-            _settings.InformationAboutRemoteControl();
         }
     }
 }

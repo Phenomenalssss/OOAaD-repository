@@ -11,6 +11,8 @@ namespace RemoteControlLibrary
         private static List<int> _channels = new List<int> {1, 3, 5, 7, 9, 11, 13, 15, 17, 19};
         private int _number = 0;
         private int _currentChannel;
+        private int _backChannel;
+        private bool _isBackChannel = false;
 
         public Channel()
         {
@@ -24,14 +26,16 @@ namespace RemoteControlLibrary
 
         public void ForNumber(int number)
         {
-            if (number >= 11 || number <= 0)
+            if (!_channels.Contains(number))
             {
-                Console.WriteLine("Ошибка. Данного канала не существует (существующие каналы: 1-10)");
+                Console.WriteLine($"Ошибка. {number}-го канала не существует (существующие каналы: *.List())");
             }
             else
             {
-                _currentChannel = _channels[number];
-                Console.WriteLine($"Переключение на {number}-й канал ({_channels[number]})");
+                _isBackChannel = true;
+                _backChannel = _currentChannel;
+                _currentChannel = number;
+                Console.WriteLine($"Переключение на {number}-й канал");
             }
         }
 
@@ -43,6 +47,8 @@ namespace RemoteControlLibrary
             }
             else
             {
+                _isBackChannel = true;
+                _backChannel = _currentChannel;
                 _number++;
                 _currentChannel = _channels[_number];
                 Console.WriteLine($"Переключение на следующий канал ({_currentChannel})");
@@ -57,9 +63,26 @@ namespace RemoteControlLibrary
             }
             else
             {
+                _isBackChannel = true;
+                _backChannel = _currentChannel;
                 _number--;
                 _currentChannel = _channels[_number];
                 Console.WriteLine($"Переключение на предыдущий канал ({_currentChannel})");
+            }
+        }
+
+        public void Back()
+        {
+            if (!_isBackChannel)
+            {
+                Console.WriteLine("Ошибка. Вы не можете вернуться на прошлый канал");
+            }
+            else
+            {
+                int temp = _currentChannel;
+                _currentChannel = _backChannel;
+                _backChannel = temp;
+                Console.WriteLine($"Переключение на прошлый канал ({_currentChannel})");
             }
         }
     }

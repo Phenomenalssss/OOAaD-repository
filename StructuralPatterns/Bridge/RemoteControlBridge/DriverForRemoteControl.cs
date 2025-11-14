@@ -13,14 +13,13 @@ namespace RemoteControlBridge
 
         public virtual void Operation()
         {
-            Console.WriteLine("---------- Абстрактный пульт ----------");
+            Console.WriteLine("---------- Абстрактный драйвер ----------");
             _settings.BrightnessUp();
             _settings.BrightnessUp();
             _settings.BrightnessDown();
             _settings.Subtitles();
             _settings.SetBrightness(77);
-            _settings.InformationAboutRemoteControl();
-            Console.WriteLine("---------- Абстрактный пульт ----------");
+            Console.WriteLine("---------- Абстрактный драйвер ----------");
         }
     }
 }

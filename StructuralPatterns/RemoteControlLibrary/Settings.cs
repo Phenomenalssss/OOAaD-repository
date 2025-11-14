@@ -66,14 +66,5 @@ namespace RemoteControlLibrary
                 Console.WriteLine($"Яркость снижена ({Brightness})");
             }
         }
-
-        public void InformationAboutRemoteControl()
-        {
-            Console.WriteLine("-----");
-            Console.WriteLine("Модель пульта: Phenomenals");
-            Console.WriteLine("Версия: 3.4.2");
-            Console.WriteLine("Дата выпуска: 02.11.2025");
-            Console.WriteLine("-----");
-        }
     }
 }
