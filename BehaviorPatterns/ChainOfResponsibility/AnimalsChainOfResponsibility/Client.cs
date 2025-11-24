@@ -19,7 +19,7 @@ namespace AnimalsChainOfResponsibility
                 }
                 else
                 {
-                    Console.WriteLine("Не получилось((((");
+                    Console.WriteLine($"? {food} не съели");
                 }
             }
         }

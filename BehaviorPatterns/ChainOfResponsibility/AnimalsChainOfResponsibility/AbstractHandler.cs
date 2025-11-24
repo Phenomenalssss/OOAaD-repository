@@ -22,7 +22,8 @@ namespace AnimalsChainOfResposibility
             }
             else
             {
-                return $"? Ошибка: Ни одно животное не смогло съесть {request.ToString()}";
+                Console.WriteLine($"? Ошибка: Ни одно животное не смогло съесть {request.ToString()}");
+                return null;
             }
         }
     }
