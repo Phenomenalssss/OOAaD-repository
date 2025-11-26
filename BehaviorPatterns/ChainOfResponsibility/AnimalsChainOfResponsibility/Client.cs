@@ -7,7 +7,7 @@ namespace AnimalsChainOfResponsibility
 {
     public class Client
     {
-        public static void Feed(AbstractHandler handler)
+        public static void Feed(IHandler handler)
         {
             foreach(var food in new List<string> { "Орех", "Яблоко", "Банан", "Огурец", "Арбуз", "Бамбук" })
             {

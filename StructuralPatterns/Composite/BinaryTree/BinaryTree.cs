@@ -5,14 +5,22 @@ using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
 using System.Text;
+using System.Xml.Schema;
+using INodes;
+using Leafs;
 using Nodes;
+using Iterators;
+using IteratorAggregates;
+using BinaryTreeIterators;
+using System.Collections;
 
-namespace Composite
+namespace BinaryTrees
 {
-    public class BinaryTree
+    public class BinaryTree : IteratorAggregate
     {
-        private Node _root = null;
+        private INode _root = null;
         public int Count { get; private set; } = 0;
+        private bool _direction = false;
 
         public BinaryTree() { }
 
@@ -22,145 +30,101 @@ namespace Composite
 
             if (_root == null)
             {
-                _root = new Node(value);
+                _root = new Leaf(value);
                 Count++;
                 return;
             }
 
-            Node current = _root;
-            while (true)
-            {
-                if (value < current.Value)
-                {
-                    if (current.Left == null)
-                    {
-                        current.Left = new Node(value);
-                        Count++;
-                        return;
-                    }
-                    else
-                    {
-                        current = current.Left;
-                    }
-                }
-                else
-                {
-                    if (current.Right == null)
-                    {
-                        current.Right = new Node(value);
-                        Count++;
-                        return;
-                    }
-                    else
-                    {
-                        current = current.Right;
-                    }
-                }
-            }
-        }
+            INode current = _root;
+            INode parent = null;
+            bool goLeft = false;
 
-        public void Remove(double value)
-        {
-            Node parent = null;
-            Node current = _root;
-
-            while(current != null && current.Value != value)
+            while (current is Node node)
             {
                 parent = current;
-                if (value < current.Value)
+
+                if (value < node.Value)
                 {
-                    current = current.Left;
+                    if (node.Left == null)
+                    {
+                        current = null;
+                        goLeft = true;
+                        break;
+                    }
+                    current = node.Left;
+                    goLeft = true;
                 }
                 else
                 {
-                    current = current.Right;
+                    if (node.Right == null)
+                    {
+                        current = null;
+                        goLeft = false;
+                        break;
+                    }
+                    current = node.Right;
+                    goLeft = false;
                 }
             }
+
             if (current == null)
             {
-                Console.WriteLine($"Элемент {value} не найден");
+                Node parentNode = (Node) parent;
+                Leaf newLeaf = new Leaf(value);
+                if (goLeft)
+                {
+                    parentNode.Left = newLeaf;
+                }
+                else
+                {
+                    parentNode.Right = newLeaf;
+                }
+                Count++;
                 return;
             }
-            if (current.Left == null && current.Right == null)
+
+            Leaf leaf = (Leaf) current;
+            Node newNode = new Node(leaf.Value, null, null);
+
+            if (parent == null)
             {
-                if (parent == null)
-                {
-                    _root = null;
-                }
-                else if (parent.Left == current)
-                {
-                    parent.Left = null;
-                }
-                else
-                {
-                    parent.Right = null;
-                }
-            }
-            else if (current.Left == null)
-            {
-                if (parent == null)
-                {
-                    _root = current.Right;
-                }
-                else if (parent.Left == current)
-                {
-                    parent.Left = current.Right;
-                }
-                else
-                {
-                    parent.Right = current.Right;
-                }
-            }
-            else if (current.Right == null)
-            {
-                if (parent == null)
-                {
-                    _root = current.Left;
-                }
-                else if (parent.Left == current)
-                {
-                    parent.Left = current.Left;
-                }
-                else
-                {
-                    parent.Right = current.Left;
-                }
+                _root = newNode;
             }
             else
             {
-                Node parentMin = current;
-                Node min = current.Right;
+                Node parentNode = (Node) parent;
 
-                while (min.Left != null)
+                if (leaf.Value < parent.Value)
                 {
-                    parentMin = min;
-                    min = min.Left;
-                }
-
-                current.Value = min.Value;
-
-                if (parentMin.Left == min)
-                {
-                    parentMin.Left = min.Right;
+                    parentNode.Left = newNode;
                 }
                 else
                 {
-                    parentMin.Right = min.Right;
+                    parentNode.Right = newNode;
                 }
             }
-            Count--;
-            Console.WriteLine($"Элемент {value} удалён");
+
+            if (value < newNode.Value)
+            {
+                newNode.Left = new Leaf(value);
+            }
+            else
+            {
+                newNode.Right = new Leaf(value);
+            }
+
+            Count++;
         }
 
         public double Min()
         {
             if (!IsEmpty())
             {
-                Node current = _root;
+                INode current = _root;
 
-                while(current.Left != null)
+                while(current is Node node && node.Left != null)
                 {
-                    current = current.Left;
+                    current = node.Left;
                 }
 
                 Console.WriteLine($"Минимальный элемент = {current.Value}");
@@ -176,11 +140,11 @@ namespace Composite
         {
             if (!IsEmpty())
             {
-                Node current = _root;
+                INode current = _root;
 
-                while (current.Right != null)
+                while (current is Node node && node.Right != null)
                 {
-                    current = current.Right;
+                    current = node.Right;
                 }
 
                 Console.WriteLine($"Максимальный элемент = {current.Value}");
@@ -192,46 +156,35 @@ namespace Composite
             }
         }
 
-        public void InOrderWalk()
+        public void ReverseDirection()
         {
-            if (_root != null)
-            {
-                Console.WriteLine("Симметричный обход дерева:");
-                InOrderWalk(_root);
-                Console.WriteLine();
-            }
-            else
-            {
-                Console.WriteLine("Обход дерева невозможно совершить, так как дерево пусто");
-            }
+            _direction = !_direction;
         }
 
-        private void InOrderWalk(Node element)
+        private void FillList(INode element, List<double> values, ref int index)
         {
-            if (element != null)
+            if (element == null)
             {
-                InOrderWalk(element.Left);
-                Console.Write(element.Value + " ");
-                InOrderWalk(element.Right);
+                return;
             }
+            if (element is Leaf leaf)
+            {
+                values.Add(leaf.Value);
+                return;
+            }
+
+            Node node = (Node) element;
+
+            FillList(node.Left, values, ref index);
+            values.Add(node.Value);
+            FillList(node.Right, values, ref index);
         }
 
-        private void FillArray(Node element, double[] values, ref int i)
-        {
-            if (element != null)
-            {
-                FillArray(element.Left, values, ref i);
-                values[i] = element.Value;
-                i++;
-                FillArray(element.Right, values, ref i);
-            }
-        }
-
-        public double[] GetAllValues()
+        public List<double> GetAllValues()
         { 
-            double[] values = new double[Count];
-            int i = 0;
-            FillArray(_root, values, ref i);
+            List<double> values = new List<double>();
+            int index = 0;
+            FillList(_root, values, ref index);
             return values;
         }
 
@@ -242,36 +195,31 @@ namespace Composite
                 return false;
             }
 
-            Node current = _root;
+            INode current = _root;
             while (true)
             {
-                if (value < current.Value)
+                if (current is Leaf leaf)
                 {
-                    if (current.Left == null)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        current = current.Left;
-                    }
-                }
-                else if (value > current.Value)
-                {
-                    if (current.Right == null)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        current = current.Right;
-                    }
+                    return leaf.Value == value;
                 }
                 else
                 {
-                    return true;
+                    Node node = (Node) current;
+                    if (value < node.Value)
+                    {
+                        current = node.Left;
+                    }
+                    else if (value > node.Value)
+                    {
+                        current = node.Right;
+                    }
+                    else
+                    {
+                        return true;
+                    }
                 }
             }
+            return false;
         }
 
         public bool Contains(double value)
@@ -312,18 +260,29 @@ namespace Composite
             Count = 0;
         }
 
-        private int Height(Node element)
+        private int Height(INode element)
         {
             if (element == null)
             {
                 return -1;
             }
-            return 1 + Math.Max(Height(element.Left), Height(element.Right));
+            if (element is Leaf)
+            {
+                return 0;
+            }
+
+            Node node = (Node) element;
+            return 1 + Math.Max(Height(node.Left), Height(node.Right));
         }
 
         public int Height()
         {
             return Height(_root);
+        }
+
+        public override IEnumerator GetEnumerator()
+        {
+            return new BinaryTreeIterator(this, _direction);
         }
     }
 }

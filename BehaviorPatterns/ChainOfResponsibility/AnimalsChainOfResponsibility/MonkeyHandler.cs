@@ -6,11 +6,14 @@ namespace AnimalsChainOfResposibility
 {
     public class MonkeyHandler : AbstractHandler
     {
+        public MonkeyHandler(IHandler handler) : base(handler) { }
+
         public override object Handle(object request)
         {
             if (request.ToString() == "Банан")
             {
-                return $"+ Обезьяна съела {request.ToString()}";
+                HandlerEvent($"Обезьяна съела {request}");
+                return true;
             }
             else
             {

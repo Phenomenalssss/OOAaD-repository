@@ -6,11 +6,14 @@ namespace AnimalsChainOfResposibility
 {
     public class SquirrelHandler : AbstractHandler
     {
+        public SquirrelHandler(IHandler handler) : base(handler) { }
+
         public override object Handle(object request)
         {
             if (request.ToString() == "Орех")
             {
-                return $"+ Белка съела {request.ToString()}";
+                HandlerEvent($"Белка съела {request}");
+                return true;
             }
             else
             {

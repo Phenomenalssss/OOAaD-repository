@@ -1,4 +1,4 @@
-﻿using Composite;
+﻿using BinaryTrees;
 
 namespace ProgramCompsoite
 {
@@ -7,7 +7,6 @@ namespace ProgramCompsoite
         public static void Main(string[] args)
         {
             BinaryTree tree = new BinaryTree();
-
             tree.Add(5);
             tree.Add(12);
             tree.Add(1);
@@ -23,31 +22,28 @@ namespace ProgramCompsoite
             tree.IsEmptyString();
             tree.Contains(5);
             tree.Contains(3);
-
-            double[] values = tree.GetAllValues();
-            Console.WriteLine("Элементы дерева: " + string.Join(", ", values));
-
-            tree.InOrderWalk();
-
-            tree.Remove(3);
-            Console.WriteLine("-------------------------------------------------");
-
-            tree.Remove(5);
-            Console.WriteLine($"Количество элементов = {tree.Count}");
-            Console.WriteLine($"Высота дерева = {tree.Height()}");
-            tree.InOrderWalk();
-            Console.WriteLine("-------------------------------------------------");
-
-            tree.Remove(7);
-            Console.WriteLine($"Количество элементов = {tree.Count}");
-            Console.WriteLine($"Высота дерева = {tree.Height()}");
-            tree.InOrderWalk();
-            Console.WriteLine("-------------------------------------------------");
-
+            Console.WriteLine("Элементы дерева в прямом порядке:");
+            foreach (var value in tree)
+            {
+                Console.Write(value + " ");
+            }
+            Console.WriteLine();
+            tree.ReverseDirection();
+            Console.WriteLine("Элементы дерева в обратном порядке:");
+            foreach (var value in tree)
+            {
+                Console.Write(value + " ");
+            }
+            Console.WriteLine();
             tree.Clear();
             Console.WriteLine($"Количество элементов = {tree.Count}");
-            tree.IsEmpty();
-            tree.InOrderWalk();
+            tree.IsEmptyString();
+            Console.WriteLine("Элементы дерева в обратном порядке:");
+            foreach (var value in tree)
+            {
+                Console.Write(value + " ");
+            }
+            Console.WriteLine();
         }
     }
 }

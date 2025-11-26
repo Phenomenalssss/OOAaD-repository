@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using BinaryTrees;
+using Iterators;
+
+namespace BinaryTreeIterators
+{
+    public class BinaryTreeIterator : Iterator
+    {
+        private BinaryTree _tree;
+        private int _position = -1;
+        private bool _reverse = false;
+
+        public BinaryTreeIterator(BinaryTree tree, bool revese = false)
+        {
+            _tree = tree;
+            _reverse = revese;
+
+            if (revese)
+            {
+                _position = tree.Count;
+            }
+        }
+
+        public override object Current()
+        {
+            return _tree.GetAllValues()[_position];
+        }
+
+        public override int Key()
+        {
+            return _position;
+        }
+
+        public override bool MoveNext()
+        {
+            int updatedPosition = _position + (_reverse ? -1 : 1);
+
+            if (updatedPosition >= 0 && updatedPosition < _tree.Count)
+            {
+                _position = updatedPosition;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override void Reset()
+        {
+            _position = _reverse ? _tree.Count - 1 : 0;
+        }
+    }
+}

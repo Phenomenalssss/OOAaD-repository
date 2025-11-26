@@ -7,11 +7,14 @@ namespace AnimalsChainOfResposibility
 {
     public class PandaHandler : AbstractHandler
     {
+        public PandaHandler(IHandler handler) : base(handler) { }
+
         public override object Handle(object request)
         {
             if (request.ToString() == "Бамбук")
             {
-                return $"+ Панда съела {request.ToString()}";
+                HandlerEvent($"Панда съела {request}");
+                return true;
             }
             else
             {

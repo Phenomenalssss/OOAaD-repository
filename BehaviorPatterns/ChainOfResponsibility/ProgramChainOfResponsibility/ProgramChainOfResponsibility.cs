@@ -1,5 +1,6 @@
 ﻿using AnimalsChainOfResponsibility;
 using AnimalsChainOfResposibility;
+using System.Data.SqlTypes;
 using System.Xml.XPath;
 
 namespace ProgramChainOfResponsibility
@@ -8,16 +9,28 @@ namespace ProgramChainOfResponsibility
     {
         static void Main(string[] args)
         {
-            MonkeyHandler monkey = new MonkeyHandler();
-            PandaHandler panda = new PandaHandler();
-            SquirrelHandler squirrel = new SquirrelHandler();
 
-            monkey.SetNext(panda).SetNext(squirrel);
+            AbstractHandler monkey = new MonkeyHandler(null);
+            PandaHandler panda = new PandaHandler(monkey);
+            SquirrelHandler squirrel = new SquirrelHandler(panda);
+
+            monkey.OnHandled += HanderEvent;
             Client.Feed(monkey);
 
             Console.WriteLine("-----------------------------------------------------------");
 
+            panda.OnHandled += HanderEvent;
             Client.Feed(panda);
+
+            Console.WriteLine("-----------------------------------------------------------");
+
+            squirrel.OnHandled += HanderEvent;
+            Client.Feed(squirrel);
+        }
+
+        public static void HanderEvent(string message)
+        {
+            Console.WriteLine($"[Event] {message}");
         }
     }
 }

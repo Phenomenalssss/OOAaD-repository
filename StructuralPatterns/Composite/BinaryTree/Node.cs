@@ -1,18 +1,20 @@
-﻿namespace Nodes
+﻿using INodes;
+
+namespace Nodes
 {
-    public class Node
+    public class Node : INode
     {
         public double Value {  get; set; }
 
-        public Node Left { get; set; }
+        public INode Left { get; set; }
 
-        public Node Right { get; set; }
+        public INode Right { get; set; }
 
-        public Node(double value)
+        public Node(double value, INode left, INode right)
         {
             Value = value;
-            Left = null;
-            Right = null;
+            Left = left;
+            Right = right;
         }
     }
 }
