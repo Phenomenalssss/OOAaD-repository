@@ -15,11 +15,6 @@ namespace AnimalsChainOfResposibility
             _nextHandler = handler;
         }
 
-        public IHandler SetNext(IHandler handler)
-        {
-            return handler;
-        }
-
         public virtual object Handle(object request)
         {
             if (_nextHandler != null)
