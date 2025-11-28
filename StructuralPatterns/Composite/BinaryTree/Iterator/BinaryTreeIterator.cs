@@ -12,12 +12,12 @@ namespace BinaryTreeIterators
         private int _position = -1;
         private bool _reverse = false;
 
-        public BinaryTreeIterator(BinaryTree tree, bool revese = false)
+        public BinaryTreeIterator(BinaryTree tree, bool reverse = false)
         {
             _tree = tree;
-            _reverse = revese;
+            _reverse = reverse;
 
-            if (revese)
+            if (reverse)
             {
                 _position = tree.Count;
             }
